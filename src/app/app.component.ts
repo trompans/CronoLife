@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, List } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import { TranslateService } from '@ngx-translate/core';
 import { ListPage } from '../pages/list/list';
 
 @Component({
@@ -12,11 +12,17 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = ListPage;
-
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+
+  constructor(public platform: Platform, 
+              public statusBar: StatusBar, 
+              public splashScreen: SplashScreen,
+              private translateService: TranslateService) {
     this.initializeApp();
+
+    this.translateService.setDefaultLang('en');
+    this.translateService.use('en');
 
     // used for an example of ngFor and navigation
     this.pages = [
