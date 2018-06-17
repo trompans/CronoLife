@@ -1,3 +1,11 @@
 {
-  "HELLO": "Hello"
+  "HELLO": "Hello",
+  "TITULO_PAG_LISTA_ACTIVIDADES": "Mis CronoActividades",
+  "NO_ACTIVIDADES-ACTIVAS": "No hay actividades activas.",
+  "TITULO_ACTIONSHEET" : "Activity Opcions",
+  "EDITAR" : "Edit",
+  "DESACTIVAR" : "Hide",
+  "BORRAR" : "Delete",
+  "COMENZAR" : "Begin",
+  "CANCELAR" : "Cancel"
 }

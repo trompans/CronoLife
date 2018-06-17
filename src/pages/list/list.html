@@ -3,19 +3,19 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Mis CronoActividades</ion-title>
+    <ion-title>{{ 'TITULO_PAG_LISTA_ACTIVIDADES' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <button ion-item *ngFor="let actividad of listaActividades " (click)="1">
-      <ion-icon [name]="actividad.icono" actividad start></ion-icon>
+    <button ion-item *ngFor="let actividad of listaActividades;" id="{{actividad.idActividad}}" (click)="mostrarAcciones(id)">
+      <ion-icon name="{{actividad.icono}}" start></ion-icon>
       {{actividad.nombre}}
 
     </button>
   </ion-list>
-  <div *ngIf="listaActividades"  padding>
-    No hay actividades activas.
+  <div *ngIf="!listaActividades"  padding>
+    {{ 'NO_ACTIVIDADES-ACTIVAS' | translate }}
   </div>
 </ion-content>
