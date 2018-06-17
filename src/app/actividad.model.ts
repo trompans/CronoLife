@@ -24,4 +24,14 @@ export class Actividad {
 
        return listaActividadesActivas;
     }
+
+    borrar() {
+
+    }
+
+    ocultar() {
+
+    }
+
+    comenzarCronometro() {}
 }

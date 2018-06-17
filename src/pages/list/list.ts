@@ -2,8 +2,11 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Actividad } from '../../app/actividad.model';
 import { ActionSheetController } from 'ionic-angular';
+import { ModalController } from 'ionic-angular';
 //import { TranslateModule } from '@ngx-translate/core';
-import {TranslateService} from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
+import { NuevaActividadPage } from '../nueva-actividad/nueva-actividad';
+import { EditarActividadPage } from '../editar-actividad/editar-actividad';
 
 @Component({
   selector: 'page-list',
@@ -25,24 +28,12 @@ export class ListPage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public translate: TranslateService,
-              public actionSheetCtrl: ActionSheetController) {
-    // If we navigated to this page, we will have an item available as a nav param
-    this.actvidadSelect = navParams.get('item');
-
-    // Let's populate this page with some filler content for funzies
-    //this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-    //'american-football', 'boat', 'bluetooth', 'build'];
+              public actionSheetCtrl: ActionSheetController,
+              public modalCtrl : ModalController) {
 
     this.listaActividades = Actividad.getActividadesActivas();
 
     this.obtenerTextos();
-  }
-
-  itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
-    this.navCtrl.push(ListPage, {
-      item: item
-    });
   }
 
   obtenerTextos() {
@@ -84,29 +75,39 @@ export class ListPage {
     );
   }
 
-  mostrarAcciones(idActividad : number) {
+  nuevaActividad() {
+    let modalNuevaActividad = this.modalCtrl.create(NuevaActividadPage);
+    modalNuevaActividad.present();
+  }
 
+  mostrarAcciones(actividad : Actividad, indice : number) {
     const actionSheet = this.actionSheetCtrl.create({
       buttons: [
         {
           text: this.litComenzar,
           handler: () => {
             console.log('Comenzar a contar tiempo');
+            actividad.comenzarCronometro();
           }
         },{
           text: this.litEditar,
           handler: () => {
             console.log('Editar');
+            let modalEditarActividad = this.modalCtrl.create(EditarActividadPage);
+            modalEditarActividad.present();
           }
         },{
           text: this.litDesactivar,
           handler: () => {
             console.log('Desactivar');
+            this.listaActividades.splice(indice, 1);
           }
         },{
           text: this.litBorrar,
           handler: () => {
             console.log('Borrar');
+            actividad.borrar();
+            this.listaActividades.splice(indice, 1);
           }
         },{
           text: this.litCancelar,

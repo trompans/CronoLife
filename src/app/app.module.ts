@@ -4,6 +4,8 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { ListPage } from '../pages/list/list';
+import { NuevaActividadPage } from '../pages/nueva-actividad/nueva-actividad';
+import { EditarActividadPage } from '../pages/editar-actividad/editar-actividad';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -19,7 +21,9 @@ export function createTranslateLoader(httpClient: HttpClient) {
 @NgModule({
   declarations: [
     MyApp,
-    ListPage
+    ListPage,
+    NuevaActividadPage,
+    EditarActividadPage
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,9 @@ export function createTranslateLoader(httpClient: HttpClient) {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    ListPage
+    ListPage,
+    NuevaActividadPage,
+    EditarActividadPage
   ],
   providers: [
     StatusBar,

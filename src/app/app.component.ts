@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TranslateService } from '@ngx-translate/core';
 import { ListPage } from '../pages/list/list';
 
+
 @Component({
   templateUrl: 'app.html'
 })
