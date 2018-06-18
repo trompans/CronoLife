@@ -6,12 +6,14 @@ import { MyApp } from './app.component';
 import { ListPage } from '../pages/list/list';
 import { NuevaActividadPage } from '../pages/nueva-actividad/nueva-actividad';
 import { EditarActividadPage } from '../pages/editar-actividad/editar-actividad';
+import { SplashPage } from '../pages/splash/splash';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateHttpLoader } from '@ngx-trnpm installanslate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 export function createTranslateLoader(httpClient: HttpClient) {
@@ -23,7 +25,8 @@ export function createTranslateLoader(httpClient: HttpClient) {
     MyApp,
     ListPage,
     NuevaActividadPage,
-    EditarActividadPage
+    EditarActividadPage,
+    SplashPage
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,8 @@ export function createTranslateLoader(httpClient: HttpClient) {
     MyApp,
     ListPage,
     NuevaActividadPage,
-    EditarActividadPage
+    EditarActividadPage,
+    SplashPage
   ],
   providers: [
     StatusBar,
