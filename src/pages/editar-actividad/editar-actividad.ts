@@ -1,13 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the EditarActividadPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { Actividad } from '../../app/actividad.model';
 
 @Component({
   selector: 'page-editar-actividad',
@@ -15,8 +8,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class EditarActividadPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  actividad : Actividad;
+
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              public viewCtrl : ViewController) {
+    
+    this.actividad = <Actividad>this.navParams.data;
   }
 
-
+  cerrarModal() {
+    this.viewCtrl.dismiss();
+  }
 }

@@ -2,9 +2,17 @@
 
   <ion-navbar>
     <ion-title>nuevaActividad</ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="cerrarModal()">
+        <span ion-text color="primary">Cancel</span>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
+
+
+<ion-content padding>
 <!--aquí va nuestro formulario-->
 <form #formulario_nueva_actividad="ngForm" (ngSubmit)="guardar(formulario_nueva_actividad.value, formulario_nueva_actividad.valid)">
   <div>
@@ -27,8 +35,5 @@
   </div>
   <button type="submit" ion-button [disabled]=!(formulario_nueva_actividad.valid)>Acceder</button>
   </form>
-  </div>
-
-<ion-content padding>
 
 </ion-content>
