@@ -41,7 +41,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       // Remove the automatically generated call to hide the splash screen
-      //this.splashScreen.hide();
+      this.splashScreen.hide();
       let splash = this.modalCtrl.create(SplashPage);
       splash.present();
     });
