@@ -1,9 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, List } from 'ionic-angular';
+import { Nav, Platform, List, ModalController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TranslateService } from '@ngx-translate/core';
 import { ListPage } from '../pages/list/list';
+
+import { SplashPage } from '../pages/splash/splash'
 
 
 @Component({
@@ -19,7 +21,8 @@ export class MyApp {
   constructor(public platform: Platform, 
               public statusBar: StatusBar, 
               public splashScreen: SplashScreen,
-              private translateService: TranslateService) {
+              private translateService: TranslateService,
+              private modalCtrl: ModalController) {
     this.initializeApp();
 
     this.translateService.setDefaultLang('en');
@@ -39,6 +42,8 @@ export class MyApp {
       this.statusBar.styleDefault();
       // Remove the automatically generated call to hide the splash screen
       //this.splashScreen.hide();
+      let splash = this.modalCtrl.create(SplashPage);
+      splash.present();
     });
   }
 
