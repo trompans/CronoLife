@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { Actividad } from '../../app/actividad.model';
 import { ActionSheetController } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
@@ -7,6 +7,7 @@ import { ModalController } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { NuevaActividadPage } from '../nueva-actividad/nueva-actividad';
 import { EditarActividadPage } from '../editar-actividad/editar-actividad';
+import { DatabaseService } from '../../app/database.service';
 
 @Component({
   selector: 'page-list',
@@ -29,11 +30,13 @@ export class ListPage {
               public navParams: NavParams,
               public translate: TranslateService,
               public actionSheetCtrl: ActionSheetController,
-              public modalCtrl : ModalController) {
-
-    this.listaActividades = Actividad.getActividadesActivas();
+              public modalCtrl : ModalController,
+              private servicioBD : DatabaseService,
+              public alertCtrl: AlertController) {
 
     this.obtenerTextos();
+    this.obtenerActividades();
+
   }
 
   obtenerTextos() {
@@ -75,6 +78,17 @@ export class ListPage {
     );
   }
 
+  obtenerActividades() {
+    this.servicioBD.getActividadesActivas()
+    .then(actividades => {
+      console.log(actividades);
+      this.listaActividades = actividades;
+    })
+    .catch( error => {
+      console.error( error );
+    });
+  }
+
   nuevaActividad() {
     let modalNuevaActividad = this.modalCtrl.create(NuevaActividadPage);
     modalNuevaActividad.present();
@@ -87,7 +101,13 @@ export class ListPage {
           text: this.litComenzar,
           handler: () => {
             console.log('Comenzar a contar tiempo');
-            actividad.comenzarCronometro();
+            this.servicioBD.iniciarActividad(actividad.idActividad)
+            .then(response => {
+              console.log(response);
+            })
+            .catch( error => {
+              console.error( error );
+            });
           }
         },{
           text: this.litEditar,
@@ -100,14 +120,20 @@ export class ListPage {
           text: this.litDesactivar,
           handler: () => {
             console.log('Desactivar');
-            this.listaActividades.splice(indice, 1);
+            this.servicioBD.desactivarActividad(actividad.idActividad)
+            .then(response => {
+              console.log(response);
+              this.listaActividades.splice(indice, 1);
+            })
+            .catch( error => {
+              console.error( error );
+            });
           }
         },{
           text: this.litBorrar,
           handler: () => {
             console.log('Borrar');
-            actividad.borrar();
-            this.listaActividades.splice(indice, 1);
+            this.pedirConfirmacionBorrar(actividad, indice);
           }
         },{
           text: this.litCancelar,
@@ -119,5 +145,35 @@ export class ListPage {
       ]
     });
     actionSheet.present();
+  }
+
+  pedirConfirmacionBorrar(actividad : Actividad, indice : number) {
+    const confirm = this.alertCtrl.create({
+      title: '¿Seguro que quiere borrar la actividad? ¡¡¡¡ incluir ese borrado en servicio !!!!',
+      message: 'Si borra esta actividad se borraran todos los registros de tiempo que tenga asociados.',
+      buttons: [
+        {
+          text: 'Borrar',
+          handler: () => {
+            console.log('confirmado que quiere borrar');
+            this.servicioBD.borrarActividad(actividad.idActividad)
+            .then(response => {
+              console.log(response);
+              this.listaActividades.splice(indice, 1);
+            })
+            .catch( error => {
+              console.error( error );
+            });
+          }
+        },
+        {
+          text: 'No borrar',
+          handler: () => {
+            console.log('no quiere borrar');
+          }
+        }
+      ]
+    });
+    confirm.present();
   }
 }
