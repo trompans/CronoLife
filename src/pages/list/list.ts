@@ -93,7 +93,7 @@ export class ListPage {
           text: this.litEditar,
           handler: () => {
             console.log('Editar');
-            let modalEditarActividad = this.modalCtrl.create(EditarActividadPage);
+            let modalEditarActividad = this.modalCtrl.create(EditarActividadPage, actividad);
             modalEditarActividad.present();
           }
         },{
