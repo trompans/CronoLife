@@ -18,22 +18,26 @@
   <div>
     <ion-item>
       <ion-label>Icono</ion-label>
-      <ion-input type="text" #icono="ngModel" name="icono" [(ngModel)]="actividad.icono" required pattern=".{4,}"></ion-input>
+      <ion-input type="text" #icono="ngModel" name="icono" [(ngModel)]="actividad.icono" ></ion-input>
+    </ion-item>
+      <!--ion-input type="text" #icono="ngModel" name="icono" [(ngModel)]="actividad.icono" required pattern=".{4,}"></ion-input>
     </ion-item>
     <small [hidden]="!(formulario_nueva_actividad.submitted && !icono.valid)">
       Nombre de al menos 4 letras
-    </small>
+    </small-->
   </div>
   <div>
     <ion-item>
       <ion-label>Nombre</ion-label>
       <ion-input type="text" #nombre="ngModel" name="nombre" [(ngModel)]="actividad.nombre" required></ion-input>
     </ion-item>
+      <!--ion-input type="text" #nombre="ngModel" name="nombre" [(ngModel)]="actividad.nombre" required></ion-input>
+    </ion-item>
     <small [hidden]="!(formulario_nueva_actividad.submitted && !nombre.valid)">
       Contraseña obligatoria
-    </small>
+    </small-->
   </div>
-  <button type="submit" ion-button [disabled]=!(formulario_nueva_actividad.valid)>Acceder</button>
+  <button type="submit" ion-button [disabled]=!(formulario_nueva_actividad.valid)>Guardar</button>
   </form>
 
 </ion-content>

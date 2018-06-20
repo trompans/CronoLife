@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ListPage } from '../pages/list/list';
 
 import { SplashPage } from '../pages/splash/splash'
+import { DatabaseService } from './database.service';
 
 
 @Component({
@@ -22,7 +23,8 @@ export class MyApp {
               public statusBar: StatusBar, 
               public splashScreen: SplashScreen,
               private translateService: TranslateService,
-              private modalCtrl: ModalController) {
+              private modalCtrl: ModalController,
+              private db : DatabaseService) {
     this.initializeApp();
 
     this.translateService.setDefaultLang('en');
@@ -36,7 +38,11 @@ export class MyApp {
   }
 
   initializeApp() {
+    console.log ("Entra en initializeApp");
     this.platform.ready().then(() => {
+      console.log ("then initializeApp");
+      this.db.prepararBD();      
+      
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();

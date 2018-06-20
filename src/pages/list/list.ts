@@ -33,10 +33,11 @@ export class ListPage {
               public modalCtrl : ModalController,
               private servicioBD : DatabaseService,
               public alertCtrl: AlertController) {
-
+    console.log("voy a traducciones");
     this.obtenerTextos();
+    console.log("voy a obtener las actividades")
     this.obtenerActividades();
-
+    console.log("he obtenido las actividades");
   }
 
   obtenerTextos() {
@@ -90,9 +91,14 @@ export class ListPage {
   }
 
   nuevaActividad() {
+    console.log("en nuevaActividad()");
     let modalNuevaActividad = this.modalCtrl.create(NuevaActividadPage);
-    modalNuevaActividad.present();
-  }
+    modalNuevaActividad.present().then((actividad) =>
+                {
+                  console.log("me devuelve la actividad " + actividad);
+                  this.listaActividades.push(actividad);
+                });
+  }             
 
   mostrarAcciones(actividad : Actividad, indice : number) {
     const actionSheet = this.actionSheetCtrl.create({

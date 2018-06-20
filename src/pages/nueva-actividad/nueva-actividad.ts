@@ -23,13 +23,17 @@ export class NuevaActividadPage {
               public navParams: NavParams,
               public viewCtrl : ViewController,
               private servicioBD : DatabaseService) {
+    console.log("en el contructor de nueva actividad");
+    this.actividad = new Actividad;
   }
 
   guardar(actividad : Actividad, valido : true) {
     console.log("voy a guardar la actividad");
-    this.servicioBD.añadirActividad(actividad)
+    this.servicioBD.insertarActividad(actividad)
     .then(response => {
       console.log("response: " + response);
+      console.log("actividad guardada nombre " + actividad.nombre);
+      console.log("actividad guardada icono " + actividad.icono);
       this.viewCtrl.dismiss(actividad);
     })
     .catch( error => {
