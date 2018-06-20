@@ -7,6 +7,7 @@ import { ModalController } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { NuevaActividadPage } from '../nueva-actividad/nueva-actividad';
 import { EditarActividadPage } from '../editar-actividad/editar-actividad';
+import { ActividadComenzadaPage } from '../actividad-comenzada/actividad-comenzada';
 import { DatabaseService } from '../../app/database.service';
 
 @Component({
@@ -25,6 +26,9 @@ export class ListPage {
   litComenzar : string;
   litCancelar : string;
   litDesactivar : string;
+  litNoBorrar : string;
+  litTitConfirmBorrar : string;
+  litMsgConfirmBorrar : string;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -77,6 +81,24 @@ export class ListPage {
         this.litCancelar = value;
       }
     );
+    this.translate.get('NO_BORRAR').subscribe(
+      value => {
+        // value is our translated string
+        this.litNoBorrar = value;
+      }
+    );
+    this.translate.get('TITULO_CONFIRMA_BORRAR').subscribe(
+      value => {
+        // value is our translated string
+        this.litTitConfirmBorrar = value;
+      }
+    );
+    this.translate.get('MENSAJE_CONFIRM_BORRAR').subscribe(
+      value => {
+        // value is our translated string
+        this.litMsgConfirmBorrar = value;
+      }
+    );
   }
 
   obtenerActividades() {
@@ -93,11 +115,15 @@ export class ListPage {
   nuevaActividad() {
     console.log("en nuevaActividad()");
     let modalNuevaActividad = this.modalCtrl.create(NuevaActividadPage);
-    modalNuevaActividad.present().then((actividad) =>
-                {
-                  console.log("me devuelve la actividad " + actividad);
-                  this.listaActividades.push(actividad);
-                });
+    modalNuevaActividad.present();
+    // código para cuando se cierre la pantalla modal de nueva actividad
+    modalNuevaActividad.onDidDismiss( actividad => {
+        if (actividad) {
+          console.log("me devuelve la actividad " + actividad);
+          this.listaActividades.push(actividad);
+        }
+    });
+
   }             
 
   mostrarAcciones(actividad : Actividad, indice : number) {
@@ -110,6 +136,8 @@ export class ListPage {
             this.servicioBD.iniciarActividad(actividad.idActividad)
             .then(response => {
               console.log(response);
+              let modalActividadComenzada = this.modalCtrl.create(ActividadComenzadaPage, actividad);
+              modalActividadComenzada.present();
             })
             .catch( error => {
               console.error( error );
@@ -121,6 +149,15 @@ export class ListPage {
             console.log('Editar');
             let modalEditarActividad = this.modalCtrl.create(EditarActividadPage, actividad);
             modalEditarActividad.present();
+            // código para cuando se cierre la pantalla modal de editar actividad
+            modalEditarActividad.onDidDismiss( actividad => {
+              if (actividad) {
+                console.log("me devuelve la actividad " + actividad);
+                // modifica la actividad en el array de actividades activas 
+                this.listaActividades[indice].icono = actividad.icono;
+                this.listaActividades[indice].nombre = actividad.nombre;
+              }
+            });
           }
         },{
           text: this.litDesactivar,
@@ -155,11 +192,11 @@ export class ListPage {
 
   pedirConfirmacionBorrar(actividad : Actividad, indice : number) {
     const confirm = this.alertCtrl.create({
-      title: '¿Seguro que quiere borrar la actividad? ¡¡¡¡ incluir ese borrado en servicio !!!!',
-      message: 'Si borra esta actividad se borraran todos los registros de tiempo que tenga asociados.',
+      title: this.litTitConfirmBorrar,
+      message: this.litMsgConfirmBorrar,
       buttons: [
         {
-          text: 'Borrar',
+          text: this.litBorrar,
           handler: () => {
             console.log('confirmado que quiere borrar');
             this.servicioBD.borrarActividad(actividad.idActividad)
@@ -173,7 +210,7 @@ export class ListPage {
           }
         },
         {
-          text: 'No borrar',
+          text: this.litNoBorrar,
           handler: () => {
             console.log('no quiere borrar');
           }

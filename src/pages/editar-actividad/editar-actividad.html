@@ -1,10 +1,10 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>editarActividad</ion-title>
+    <ion-title>{{ 'EDITAR_ACTIVIDAD' | translate }}</ion-title>
     <ion-buttons start>
       <button ion-button (click)="cerrarModal()">
-        <span ion-text color="primary">Cancel</span>
+        <span ion-text color="primary">{{ 'CANCELAR' | translate }}</span>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -17,16 +17,16 @@
 <form #formulario_editar_actividad="ngForm" (ngSubmit)="guardar()">
   <div>
     <ion-item>
-      <ion-label>Icono</ion-label>
+      <ion-label>{{ 'ICONO' | translate }}</ion-label>
       <ion-input type="text" #icono="ngModel" name="icono" [(ngModel)]="actividad.icono"></ion-input>
     </ion-item>
   </div>
   <div>
     <ion-item>
-      <ion-label>Nombre</ion-label>
+      <ion-label>{{ 'NOMBRE' | translate }}</ion-label>
       <ion-input type="text" #nombre="ngModel" name="nombre" [(ngModel)]="actividad.nombre"></ion-input>
     </ion-item>
   </div>
-  <button type="submit" ion-button [disabled]=!(formulario_editar_actividad.valid)>Guardar</button>
+  <button type="submit" ion-button >{{ 'GUARDAR' | translate }}</button>
   </form>
 </ion-content>

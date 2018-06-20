@@ -4,7 +4,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TranslateService } from '@ngx-translate/core';
 import { ListPage } from '../pages/list/list';
-
+import { ActividadesOcultasPage } from '../pages/actividades-ocultas/actividades-ocultas';
+import { OpcionesConfigPage } from '../pages/opciones-config/opciones-config';
+import { Storage } from '@ionic/storage';
 import { SplashPage } from '../pages/splash/splash'
 import { DatabaseService } from './database.service';
 
@@ -17,24 +19,58 @@ export class MyApp {
 
   rootPage: any = ListPage;
   pages: Array<{title: string, component: any}>;
-
+  litMenuActividades : string;
+  litMenuConfiguracion : string;
+  litMenuActividadesInactivas : string;
 
   constructor(public platform: Platform, 
               public statusBar: StatusBar, 
               public splashScreen: SplashScreen,
-              private translateService: TranslateService,
+              private translate: TranslateService,
               private modalCtrl: ModalController,
+              private storage : Storage,
               private db : DatabaseService) {
-    this.initializeApp();
 
-    this.translateService.setDefaultLang('en');
-    this.translateService.use('en');
+    this.storage.get("idioma").then(
+      (idioma) => {
+        if ( idioma ) {
+          console.log("idioma = " + idioma);
+          this.translate.setDefaultLang(idioma);
+          this.translate.use(idioma);
+        } else {
+          this.translate.setDefaultLang('es');
+          this.translate.use('es');
+        }
+        this.obtenerTextos();
+        this.initializeApp();
+        // used for an example of ngFor and navigation
+        this.pages = [
+          { title: this.litMenuActividades, component: ListPage },
+          { title: this.litMenuConfiguracion, component: OpcionesConfigPage },
+          { title: this.litMenuActividadesInactivas, component: ActividadesOcultasPage}
+        ];
+      });                
+  }
 
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'List', component: ListPage }
-    ];
-
+  obtenerTextos() {
+    this.translate.get('ACTIVIDADES').subscribe(
+      value => {
+        // value is our translated string
+        this.litMenuActividades = value;
+      }
+    );
+    this.translate.get('CONFIGURACION').subscribe(
+      value => {
+        // value is our translated string
+        this.litMenuConfiguracion = value;
+      }
+    );
+    this.translate.get('ACTIVIDADES_INACTIVAS').subscribe(
+      value => {
+        // value is our translated string
+        this.litMenuActividadesInactivas = value;
+      }
+    );
   }
 
   initializeApp() {

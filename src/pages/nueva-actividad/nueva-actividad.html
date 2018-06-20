@@ -1,10 +1,10 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>nuevaActividad</ion-title>
+    <ion-title>{{ 'NUEVA_ACTIVIDAD' | translate }}</ion-title>
     <ion-buttons start>
       <button ion-button (click)="cerrarModal()">
-        <span ion-text color="primary">Cancel</span>
+        <span ion-text color="primary">{{ 'CANCELAR' | translate }}</span>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -17,27 +17,17 @@
 <form #formulario_nueva_actividad="ngForm" (ngSubmit)="guardar(formulario_nueva_actividad.value, formulario_nueva_actividad.valid)">
   <div>
     <ion-item>
-      <ion-label>Icono</ion-label>
+      <ion-label>{{ 'ICONO' | translate }}</ion-label>
       <ion-input type="text" #icono="ngModel" name="icono" [(ngModel)]="actividad.icono" ></ion-input>
     </ion-item>
-      <!--ion-input type="text" #icono="ngModel" name="icono" [(ngModel)]="actividad.icono" required pattern=".{4,}"></ion-input>
-    </ion-item>
-    <small [hidden]="!(formulario_nueva_actividad.submitted && !icono.valid)">
-      Nombre de al menos 4 letras
-    </small-->
   </div>
   <div>
     <ion-item>
-      <ion-label>Nombre</ion-label>
-      <ion-input type="text" #nombre="ngModel" name="nombre" [(ngModel)]="actividad.nombre" required></ion-input>
+      <ion-label>{{ 'NOMBRE' | translate }}</ion-label>
+      <ion-input type="text" #nombre="ngModel" name="nombre" [(ngModel)]="actividad.nombre"></ion-input>
     </ion-item>
-      <!--ion-input type="text" #nombre="ngModel" name="nombre" [(ngModel)]="actividad.nombre" required></ion-input>
-    </ion-item>
-    <small [hidden]="!(formulario_nueva_actividad.submitted && !nombre.valid)">
-      Contraseña obligatoria
-    </small-->
   </div>
-  <button type="submit" ion-button [disabled]=!(formulario_nueva_actividad.valid)>Guardar</button>
+  <button type="submit" ion-button >{{ 'GUARDAR' | translate }}</button>
   </form>
 
 </ion-content>

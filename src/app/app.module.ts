@@ -7,7 +7,9 @@ import { ListPage } from '../pages/list/list';
 import { NuevaActividadPage } from '../pages/nueva-actividad/nueva-actividad';
 import { EditarActividadPage } from '../pages/editar-actividad/editar-actividad';
 import { SplashPage } from '../pages/splash/splash';
-
+import { ActividadComenzadaPage } from '../pages/actividad-comenzada/actividad-comenzada';
+import { ActividadesOcultasPage } from '../pages/actividades-ocultas/actividades-ocultas';
+import { OpcionesConfigPage } from '../pages/opciones-config/opciones-config';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -28,7 +30,10 @@ export function createTranslateLoader(httpClient: HttpClient) {
     ListPage,
     NuevaActividadPage,
     EditarActividadPage,
-    SplashPage
+    SplashPage,
+    ActividadComenzadaPage,
+    ActividadesOcultasPage,
+    OpcionesConfigPage
   ],
   imports: [
     BrowserModule,
@@ -47,7 +52,10 @@ export function createTranslateLoader(httpClient: HttpClient) {
     ListPage,
     NuevaActividadPage,
     EditarActividadPage,
-    SplashPage
+    SplashPage,
+    ActividadComenzadaPage,
+    ActividadesOcultasPage,
+    OpcionesConfigPage
   ],
   providers: [
     StatusBar,

@@ -72,8 +72,15 @@ export class DatabaseService {
         actividad.nombre, 1]);
     }
     borrarActividad(idActividad: number): Promise<any> {
+
+
+        // HAY QUE BORRAR LOS TIEMPOS ASOCIADOS A LA ACTIVIDAD SI LOS HUBIERA
+
+
         let sql = "DELETE FROM actividades WHERE idActividad = ?";
         return this.database.executeSql(sql, [idActividad]);
+
+
     }
     modificarActividad(actividad): Promise<any> {
         let sql = "UPDATE actividades SET ( icono = ? , nombre = ? ) WHERE idActividad = ?";
