@@ -9,6 +9,7 @@ import { NuevaActividadPage } from '../nueva-actividad/nueva-actividad';
 import { EditarActividadPage } from '../editar-actividad/editar-actividad';
 import { ActividadComenzadaPage } from '../actividad-comenzada/actividad-comenzada';
 import { DatabaseService } from '../../app/database.service';
+//import { MyApp } from '../../app/app.component';
 
 @Component({
   selector: 'page-list',
@@ -19,7 +20,6 @@ export class ListPage {
 
   //icons: string[];
   listaActividades: Actividad[];
-
   tituloActionSheet : string;
   litEditar : string;
   litBorrar : string;
@@ -37,10 +37,16 @@ export class ListPage {
               public modalCtrl : ModalController,
               private servicioBD : DatabaseService,
               public alertCtrl: AlertController) {
-    console.log("voy a traducciones");
-    this.obtenerTextos();
-    console.log("voy a obtener las actividades")
-    this.obtenerActividades();
+              //public app : MyApp) {
+
+
+    //app.appEstaInicializada()
+    //.then(()=>{
+      console.log("voy a traducciones");
+      this.obtenerTextos();
+      console.log("voy a obtener las actividades")
+      this.obtenerActividades();
+    //});
   }
 
   obtenerTextos() {

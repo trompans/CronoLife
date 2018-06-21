@@ -8,7 +8,10 @@ import { ActividadesOcultasPage } from '../pages/actividades-ocultas/actividades
 import { OpcionesConfigPage } from '../pages/opciones-config/opciones-config';
 import { Storage } from '@ionic/storage';
 import { SplashPage } from '../pages/splash/splash'
+import { StatsActividadesPage } from '../pages/stats-actividades/stats-actividades';
 import { DatabaseService } from './database.service';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BienvenidaPage } from '../pages/bienvenida/bienvenida';
 
 
 @Component({
@@ -17,11 +20,13 @@ import { DatabaseService } from './database.service';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = ListPage;
+  //private appInicializada = new BehaviorSubject<boolean>(false);
+  rootPage: any = BienvenidaPage;
   pages: Array<{title: string, component: any}>;
   litMenuActividades : string;
   litMenuConfiguracion : string;
   litMenuActividadesInactivas : string;
+  litMenuEstadActividad : string;
 
   constructor(public platform: Platform, 
               public statusBar: StatusBar, 
@@ -32,6 +37,7 @@ export class MyApp {
               private db : DatabaseService) {
     
     console.log("entro en constructor de MyApp");
+
     this.storage.get("idioma").then(
       (idioma) => {
         // obtengo idioma de guardado en la configuración
@@ -46,35 +52,17 @@ export class MyApp {
         }
         this.obtenerTextos();
         this.initializeApp();
-        // used for an example of ngFor and navigation
-        this.pages = [
-          { title: this.litMenuActividades, component: ListPage },
-          { title: this.litMenuConfiguracion, component: OpcionesConfigPage },
-          { title: this.litMenuActividadesInactivas, component: ActividadesOcultasPage}
-        ];
-      });    
-      
-   /*   this.translate.setDefaultLang('en');
-      this.translate.use('en');
-      this.obtenerTextos();
-
-      this.initializeApp();
-    
-     // used for an example of ngFor and navigation
-    this.pages = [
-      { title: this.litMenuActividades, component: ListPage },
-      //{ title: this.litMenuConfiguracion, component: OpcionesConfigPage },
-      //{ title: this.litMenuActividadesInactivas, component: ActividadesOcultasPage}
-    ];*/
-      
+      });     
               
   }
+
 
   obtenerTextos() {
     this.translate.get('ACTIVIDADES').subscribe(
       value => {
         // value is our translated string
         this.litMenuActividades = value;
+        
       }
     );
     this.translate.get('CONFIGURACION').subscribe(
@@ -89,6 +77,12 @@ export class MyApp {
         this.litMenuActividadesInactivas = value;
       }
     );
+    this.translate.get('ESTADISTICAS_ACTIVIDAD').subscribe(
+      value => {
+        // value is our translated string
+        this.litMenuEstadActividad = value;
+      }
+    );
   }
 
   initializeApp() {
@@ -100,12 +94,40 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
+    
+      // used for an example of ngFor and navigation
+      this.pages = [
+        { title: this.litMenuActividades, component: ListPage },
+        { title: this.litMenuEstadActividad, component: StatsActividadesPage},
+        { title: this.litMenuActividadesInactivas, component: ActividadesOcultasPage},
+        { title: this.litMenuConfiguracion, component: OpcionesConfigPage }
+      ];
       // Remove the automatically generated call to hide the splash screen
-      this.splashScreen.hide();
+      //this.splashScreen.hide();
       let splash = this.modalCtrl.create(SplashPage);
       splash.present();
+
+      //this.appInicializada.next(true);
     });
   }
+
+  /*appEstaInicializada() {
+    console.log("estoy en appEstaInicializada");
+    return new Promise((resolve, reject) => {
+        //if dbReady is true, resolve
+        if (this.appInicializada.getValue()) {
+            resolve();
+        }
+        //otherwise, wait to resolve until dbReady returns true
+        else {
+            this.appInicializada.subscribe((ready) => {
+                if (ready) {
+                    resolve();
+                }
+            });
+        }
+    })
+  }*/
 
   openPage(page) {
     // Reset the content nav to have just this page
