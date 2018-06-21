@@ -12,7 +12,9 @@ import { StatsActividadesPage } from '../pages/stats-actividades/stats-actividad
 import { ActividadComenzadaPage } from '../pages/actividad-comenzada/actividad-comenzada';
 import { ActividadesOcultasPage } from '../pages/actividades-ocultas/actividades-ocultas';
 import { OpcionesConfigPage } from '../pages/opciones-config/opciones-config';
+
 import { BienvenidaPage } from '../pages/bienvenida/bienvenida';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -41,6 +43,7 @@ export function createTranslateLoader(httpClient: HttpClient) {
     ActividadesOcultasPage,
     OpcionesConfigPage,
     BienvenidaPage
+
   ],
   imports: [
     BrowserModule,
