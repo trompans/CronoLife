@@ -13,11 +13,6 @@ export class ActividadesOcultasPage {
   listaActividades: Actividad[];
 
   tituloActionSheet : string;
-  litEditar : string;
-  litBorrar : string;
-  litComenzar : string;
-  litCancelar : string;
-  litDesactivar : string;
 
   constructor(private servicioBD : DatabaseService) {
     console.log("voy a obtener las actividades")

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavParams, ViewController } from 'ionic-angular';
+import { NavParams, ViewController } from 'ionic-angular';
 import { Actividad } from '../../app/actividad.model';
 import { DatabaseService } from '../../app/database.service';
 
@@ -18,7 +18,7 @@ export class ActividadComenzadaPage {
     this.actividad = <Actividad>this.navParams.data;
   }
 
-  guardar() {
+  detenerActividad() {
     console.log("voy a parar el crono de la actividad");
     this.servicioBD.finalizarActividad(this.actividad.idActividad)
     .then(response => {

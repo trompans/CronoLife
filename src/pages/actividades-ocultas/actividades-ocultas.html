@@ -12,8 +12,10 @@
       <button ion-item *ngFor="let actividad of listaActividades; let indice = index;">
         <ion-icon name="{{actividad.icono}}" start></ion-icon>
         {{actividad.nombre}}
+        <button (click)="activarActividad(idActividad, indice)">{{ 'ACTIVAR' | translate }}</button>
       </button>
-      <button (click)="activarActividad(idActividad, indice)">{{ 'ACTIVAR' | translate }}</button>
+
+      
     </ion-list>
     <div *ngIf="!listaActividades"  padding>
       {{ 'NO_ACTIVIDADES_INACTIVAS' | translate }}

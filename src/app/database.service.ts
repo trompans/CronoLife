@@ -124,17 +124,26 @@ export class DatabaseService {
             .then((data)=>{
                 let lists = [];
                 for(let i=0; i<data.rows.length; i++){
-                lists.push(data.rows.item(i));
-            }
-            return lists;
-          })
+                    lists.push(data.rows.item(i));
+                }
+                return lists;
+            })
         })
 
     }
     getActividadesInactivas(): Promise<any> {
+        console.log("voy a buscar las actividades ocultas en la BD");
         let sql = "SELECT * FROM actividades WHERE activo = 0 ";
-        return this.database.executeSql(sql, {});
+        return this.database.executeSql(sql, {})
+        .then((data)=>{
+            let lists = [];
+            for(let i=0; i<data.rows.length; i++){
+                lists.push(data.rows.item(i));
+            }
+            return lists;
+        })
     }
+
     getTiemposPorActividad(idActividad: number): Promise<any> {
         let sql = "SELECT * FROM tiempos WHERE idActividad = ? ";
         return this.database.executeSql(sql, { idActividad });

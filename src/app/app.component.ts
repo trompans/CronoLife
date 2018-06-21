@@ -12,6 +12,7 @@ import { StatsActividadesPage } from '../pages/stats-actividades/stats-actividad
 import { DatabaseService } from './database.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { BienvenidaPage } from '../pages/bienvenida/bienvenida';
+import { Observable } from 'rxjs/Observable';
 
 
 @Component({
@@ -29,7 +30,7 @@ export class MyApp {
   litMenuEstadActividad : string;
 
   constructor(public platform: Platform, 
-              public statusBar: StatusBar, 
+              //public statusBar: StatusBar, 
               public splashScreen: SplashScreen,
               private translate: TranslateService,
               private modalCtrl: ModalController,
@@ -37,28 +38,70 @@ export class MyApp {
               private db : DatabaseService) {
     
     console.log("entro en constructor de MyApp");
+    this.platform.ready().then(() => {
 
-    this.storage.get("idioma").then(
-      (idioma) => {
-        // obtengo idioma de guardado en la configuración
-        console.log("idioma: " + idioma);
-        if ( idioma ) {
-          console.log("idioma = " + idioma);
-          this.translate.setDefaultLang(idioma);
-          this.translate.use(idioma);
-        } else {
-          this.translate.setDefaultLang('es');
-          this.translate.use('es');
+      //this.statusBar.styleDefault();
+      // Muestro mi pantalla Splash animada
+      let splash = this.modalCtrl.create(SplashPage);
+      splash.present();
+
+      this.storage.get("idioma").then(
+        (idioma) => {
+          // obtengo idioma guardado en la configuración
+          console.log("idioma: " + idioma);
+          if ( idioma ) {
+            console.log("idioma = " + idioma);
+            this.translate.setDefaultLang(idioma);
+            this.translate.use(idioma);
+          } else {
+            this.translate.setDefaultLang('es');
+            this.translate.use('es');
+          }
+         
+          //this.obtenerTextos();
+          // comenzamos la traduccion de textos que necesitamos
+          let clavesTraduccion : string[];
+          clavesTraduccion = ['ACTIVIDADES', 
+                              'CONFIGURACION',
+                              'ACTIVIDADES_INACTIVAS',
+                              'ESTADISTICAS_ACTIVIDAD'];
+          this.translate.get(clavesTraduccion).subscribe(
+            value => {
+              // value is our translated string
+              this.pages = [
+                { title: "value[0]", component: ListPage },
+                { title: <string>value[1], component: StatsActividadesPage},
+                { title: value[2], component: ActividadesOcultasPage},
+                { title: value[3], component: OpcionesConfigPage }
+              ];
+              this.initializeApp();
+            }
+          );
         }
-        this.obtenerTextos();
-        this.initializeApp();
-      });     
-              
+      );
+    });       
   }
 
-
   obtenerTextos() {
-    this.translate.get('ACTIVIDADES').subscribe(
+    let clavesTraduccion : string[];
+    clavesTraduccion = ['ACTIVIDADES', 
+                        'CONFIGURACION',
+                        'ACTIVIDADES_INACTIVAS',
+                        'ESTADISTICAS_ACTIVIDAD'];
+    return this.translate.get(clavesTraduccion).subscribe(
+      value => {
+        // value is our translated string
+        this.litMenuActividades = value(0);
+        this.litMenuConfiguracion = value(1);
+        this.litMenuActividadesInactivas = value(2);
+        this.litMenuEstadActividad = value(3);
+
+
+
+      }
+    );
+
+   /* this.translate.get('ACTIVIDADES').subscribe(
       value => {
         // value is our translated string
         this.litMenuActividades = value;
@@ -82,33 +125,32 @@ export class MyApp {
         // value is our translated string
         this.litMenuEstadActividad = value;
       }
-    );
+    );*/
   }
 
   initializeApp() {
     console.log ("Entra en initializeApp");
-    this.platform.ready().then(() => {
+
       console.log ("then initializeApp");
       this.db.prepararBD();      
       
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
+      
     
       // used for an example of ngFor and navigation
-      this.pages = [
+      /*this.pages = [
         { title: this.litMenuActividades, component: ListPage },
         { title: this.litMenuEstadActividad, component: StatsActividadesPage},
         { title: this.litMenuActividadesInactivas, component: ActividadesOcultasPage},
         { title: this.litMenuConfiguracion, component: OpcionesConfigPage }
-      ];
+      ];*/
       // Remove the automatically generated call to hide the splash screen
       //this.splashScreen.hide();
-      let splash = this.modalCtrl.create(SplashPage);
-      splash.present();
+
 
       //this.appInicializada.next(true);
-    });
+
   }
 
   /*appEstaInicializada() {
