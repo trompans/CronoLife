@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ListPage } from '../pages/list/list';
 
 import { SplashPage } from '../pages/splash/splash'
+import { StatsActividadesPage } from '../pages/stats-actividades/stats-actividades';
 
 
 @Component({
@@ -30,7 +31,8 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'List', component: ListPage }
+      { title: 'List', component: ListPage },
+      { title: 'Estadísticas por actividad', component: StatsActividadesPage }
     ];
 
   }

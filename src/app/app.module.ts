@@ -7,6 +7,7 @@ import { ListPage } from '../pages/list/list';
 import { NuevaActividadPage } from '../pages/nueva-actividad/nueva-actividad';
 import { EditarActividadPage } from '../pages/editar-actividad/editar-actividad';
 import { SplashPage } from '../pages/splash/splash';
+import { StatsActividadesPage } from '../pages/stats-actividades/stats-actividades';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -17,6 +18,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { SQLite } from '@ionic-native/sqlite';
 import { DatabaseService } from './database.service';
+import { Chart } from 'chart.js';
 
 export function createTranslateLoader(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, './assets/i18n/', '.json');
@@ -28,7 +30,8 @@ export function createTranslateLoader(httpClient: HttpClient) {
     ListPage,
     NuevaActividadPage,
     EditarActividadPage,
-    SplashPage
+    SplashPage,
+    StatsActividadesPage
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,8 @@ export function createTranslateLoader(httpClient: HttpClient) {
     ListPage,
     NuevaActividadPage,
     EditarActividadPage,
-    SplashPage
+    SplashPage,
+    StatsActividadesPage
   ],
   providers: [
     StatusBar,
