@@ -30,9 +30,12 @@ export class MyApp {
               private modalCtrl: ModalController,
               private storage : Storage,
               private db : DatabaseService) {
-
+    
+    console.log("entro en constructor de MyApp");
     this.storage.get("idioma").then(
       (idioma) => {
+        // obtengo idioma de guardado en la configuración
+        console.log("idioma: " + idioma);
         if ( idioma ) {
           console.log("idioma = " + idioma);
           this.translate.setDefaultLang(idioma);
@@ -49,7 +52,22 @@ export class MyApp {
           { title: this.litMenuConfiguracion, component: OpcionesConfigPage },
           { title: this.litMenuActividadesInactivas, component: ActividadesOcultasPage}
         ];
-      });                
+      });    
+      
+   /*   this.translate.setDefaultLang('en');
+      this.translate.use('en');
+      this.obtenerTextos();
+
+      this.initializeApp();
+    
+     // used for an example of ngFor and navigation
+    this.pages = [
+      { title: this.litMenuActividades, component: ListPage },
+      //{ title: this.litMenuConfiguracion, component: OpcionesConfigPage },
+      //{ title: this.litMenuActividadesInactivas, component: ActividadesOcultasPage}
+    ];*/
+      
+              
   }
 
   obtenerTextos() {

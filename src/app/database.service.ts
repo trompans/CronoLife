@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Platform } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Http } from '@angular/http'
 import { Actividad } from './actividad.model';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+
 
 
 @Injectable()
@@ -14,7 +13,7 @@ export class DatabaseService {
     private database: SQLiteObject;
     private dbReady = new BehaviorSubject<boolean>(false);
 
-    constructor(private platform: Platform, private sqlite: SQLite ) {
+    constructor(private sqlite: SQLite ) {
 
 
     } 
@@ -83,7 +82,7 @@ export class DatabaseService {
 
     }
     modificarActividad(actividad): Promise<any> {
-        let sql = "UPDATE actividades SET ( icono = ? , nombre = ? ) WHERE idActividad = ?";
+        let sql = "UPDATE actividades SET icono = ? , nombre = ? WHERE idActividad = ?";
         console.log("icono " + actividad.icono);
         console.log("nombre " + actividad.nombre);
         console.log("idactividad " + actividad.idActividad)
@@ -95,12 +94,12 @@ export class DatabaseService {
         return this.database.executeSql(sql, {});
     }
     desactivarActividad(idActividad: number): Promise<any> {
-        let sql = "UPDATE actividades SET ( activo = 0 ) WHERE idActividad = ? ";
+        let sql = "UPDATE actividades SET activo = 0 WHERE idActividad = ? ";
         return this.database.executeSql(sql, { idActividad });
     }
     reactivarActividad(idActividad: number): Promise<any> {
 
-        let sql = "UPDATE actividades SET ( activo = 1 ) WHERE idActividad = ? ";
+        let sql = "UPDATE actividades SET activo = 1 WHERE idActividad = ? ";
         return this.database.executeSql(sql, { idActividad });
     }
     iniciarActividad(idActividad: number): Promise<any> {
@@ -111,7 +110,7 @@ export class DatabaseService {
     finalizarActividad(idTiempo: number): Promise<any> {
 
         let final: number = Date.now();
-        let sql = "UPDATE tiempos SET ( tFinal =  ?) WHERE idTiempo = ? ";
+        let sql = "UPDATE tiempos SET tFinal =  ? WHERE idTiempo = ? ";
         return this.database.executeSql(sql, { final, idTiempo });
     }
     getActividadesActivas(): Promise<any> {

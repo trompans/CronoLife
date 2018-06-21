@@ -19,7 +19,7 @@
   "CANCELAR" : "Cancel",
   "NO_BORRAR" : "Don't Delete",
   "TITULO_CONFIRMA_BORRAR" : "Are you sure you want to delete the activity?",
-  "MENSAJE_CONFIRM_BORRAR" : "If you delete this activity, all associated time records will be deleted.",
+  "MENSAJE_CONFIRMA_BORRAR" : "If you delete this activity, all associated time records will be deleted.",
   "NUEVA_ACTIVIDAD" : "New Activity",
   "ESPAÑOL" : "Spanish",
   "INGLES" : "English"

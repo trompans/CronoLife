@@ -41,7 +41,6 @@ export class ListPage {
     this.obtenerTextos();
     console.log("voy a obtener las actividades")
     this.obtenerActividades();
-    console.log("he obtenido las actividades");
   }
 
   obtenerTextos() {
@@ -93,7 +92,7 @@ export class ListPage {
         this.litTitConfirmBorrar = value;
       }
     );
-    this.translate.get('MENSAJE_CONFIRM_BORRAR').subscribe(
+    this.translate.get('TITULO_CONFIRMA_BORRAR').subscribe(
       value => {
         // value is our translated string
         this.litMsgConfirmBorrar = value;
@@ -191,6 +190,7 @@ export class ListPage {
   }
 
   pedirConfirmacionBorrar(actividad : Actividad, indice : number) {
+    console.log("")
     const confirm = this.alertCtrl.create({
       title: this.litTitConfirmBorrar,
       message: this.litMsgConfirmBorrar,

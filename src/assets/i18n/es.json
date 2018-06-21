@@ -19,7 +19,7 @@
   "CANCELAR" : "Cancelar",
   "NO_BORRAR" : "No borrar",
   "TITULO_CONFIRMA_BORRAR" : "¿Seguro que quiere borrar la actividad?",
-  "MENSAJE_CONFIRM_BORRAR" : "Si borra esta actividad se borraran todos los registros de tiempo que tenga asociados.",
+  "MENSAJE_CONFIRMA_BORRAR" : "Si borra esta actividad se borraran todos los registros de tiempo que tenga asociados.",
   "NUEVA_ACTIVIDAD" : "Nueva Actividad",
   "ESPAÑOL" : "Español",
   "INGLES" : "Inglés"
