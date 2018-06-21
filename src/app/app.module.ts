@@ -7,8 +7,14 @@ import { ListPage } from '../pages/list/list';
 import { NuevaActividadPage } from '../pages/nueva-actividad/nueva-actividad';
 import { EditarActividadPage } from '../pages/editar-actividad/editar-actividad';
 import { SplashPage } from '../pages/splash/splash';
+<<<<<<< HEAD
 import { StatsActividadesPage } from '../pages/stats-actividades/stats-actividades';
 
+=======
+import { ActividadComenzadaPage } from '../pages/actividad-comenzada/actividad-comenzada';
+import { ActividadesOcultasPage } from '../pages/actividades-ocultas/actividades-ocultas';
+import { OpcionesConfigPage } from '../pages/opciones-config/opciones-config';
+>>>>>>> 015c3409de1bcb492b6a00d61b740c106c8d1a35
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -31,7 +37,13 @@ export function createTranslateLoader(httpClient: HttpClient) {
     NuevaActividadPage,
     EditarActividadPage,
     SplashPage,
+<<<<<<< HEAD
     StatsActividadesPage
+=======
+    ActividadComenzadaPage,
+    ActividadesOcultasPage,
+    OpcionesConfigPage
+>>>>>>> 015c3409de1bcb492b6a00d61b740c106c8d1a35
   ],
   imports: [
     BrowserModule,
@@ -51,7 +63,13 @@ export function createTranslateLoader(httpClient: HttpClient) {
     NuevaActividadPage,
     EditarActividadPage,
     SplashPage,
+<<<<<<< HEAD
     StatsActividadesPage
+=======
+    ActividadComenzadaPage,
+    ActividadesOcultasPage,
+    OpcionesConfigPage
+>>>>>>> 015c3409de1bcb492b6a00d61b740c106c8d1a35
   ],
   providers: [
     StatusBar,
