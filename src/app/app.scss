@@ -21,3 +21,34 @@
     top: 0;
     left: 0;
 }
+.scroll-content {
+    background: rgb(223, 224, 224);
+}
+.fab{
+    background: rgb(175, 8, 106);
+}
+
+
+  .card{
+  flex: 1 1 auto;
+  padding-left: 0;
+  padding-right: 0;
+  padding: 4px ;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  }
+  .action-sheet-ios .action-sheet-button  {
+    color: #af086a !important;
+  }
+  .action-sheet-md .action-sheet-button  {
+    color: #af086a !important;
+  }
+  .action-sheet-wp .action-sheet-button  {
+    color: #af086a !important;
+  }
+  
+  
+
+  
