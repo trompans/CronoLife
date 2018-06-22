@@ -9,10 +9,10 @@
   
   <ion-content>
     <ion-list>
-      <button ion-item *ngFor="let actividad of listaActividades; let indice = index;">
+      <button ion-button *ngFor="let actividad of listaActividades; let indice = index;">
         <ion-icon name="{{actividad.icono}}" start></ion-icon>
         {{actividad.nombre}}
-        <button (click)="activarActividad(idActividad, indice)">{{ 'ACTIVAR' | translate }}</button>
+        <button ion-item (click)="activarActividad(idActividad, indice)">{{ 'ACTIVAR' | translate }}</button>
       </button>
 
       

@@ -42,8 +42,8 @@ export class MyApp {
 
       //this.statusBar.styleDefault();
       // Muestro mi pantalla Splash animada
-      let splash = this.modalCtrl.create(SplashPage);
-      splash.present();
+//      let splash = this.modalCtrl.create(SplashPage);
+//    splash.present();
 
       this.storage.get("idioma").then(
         (idioma) => {
@@ -68,11 +68,17 @@ export class MyApp {
           this.translate.get(clavesTraduccion).subscribe(
             value => {
               // value is our translated string
+              console.log("value = " + value);
+              console.log("traducciones de opciones de menu");
+              console.log("1 " + value["ACTIVIDADES"]);
+              console.log("2 " + value[1]);
+              console.log("3 " + value[2]);
+              console.log("4 " + value[3]);
               this.pages = [
-                { title: "value[0]", component: ListPage },
-                { title: <string>value[1], component: StatsActividadesPage},
-                { title: value[2], component: ActividadesOcultasPage},
-                { title: value[3], component: OpcionesConfigPage }
+                { title: value["ACTIVIDADES"], component: ListPage },
+                { title: value["ESTADISTICAS_ACTIVIDAD"], component: OpcionesConfigPage },
+                { title: value["ACTIVIDADES_INACTIVAS"], component: ActividadesOcultasPage},
+                { title: value["CONFIGURACION"], component: StatsActividadesPage}
               ];
               this.initializeApp();
             }

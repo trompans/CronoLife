@@ -170,6 +170,7 @@ export class ListPage {
             console.log('Desactivar');
             this.servicioBD.desactivarActividad(actividad.idActividad)
             .then(response => {
+              console.log("voy a desactivar actividad");
               console.log(response);
               this.listaActividades.splice(indice, 1);
             })

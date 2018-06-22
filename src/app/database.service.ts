@@ -94,24 +94,25 @@ export class DatabaseService {
         return this.database.executeSql(sql, {});
     }
     desactivarActividad(idActividad: number): Promise<any> {
+        console.log("voy a desactivar Actividad en la BD: idActividad="+ idActividad);
         let sql = "UPDATE actividades SET activo = 0 WHERE idActividad = ? ";
-        return this.database.executeSql(sql, { idActividad });
+        return this.database.executeSql(sql, [ idActividad ]);
     }
     reactivarActividad(idActividad: number): Promise<any> {
-
+        console.log("voy a reactivar Actividad en la BD: idActividad="+ idActividad);
         let sql = "UPDATE actividades SET activo = 1 WHERE idActividad = ? ";
-        return this.database.executeSql(sql, { idActividad });
+        return this.database.executeSql(sql, [ idActividad ]);
     }
     iniciarActividad(idActividad: number): Promise<any> {
         let inicio: number = Date.now();
         let sql = "INSERT INTO tiempos ( tInicio, idActividad ) values (?,?) ";
-        return this.database.executeSql(sql, { inicio, idActividad });
+        return this.database.executeSql(sql, [ inicio, idActividad ]);
     }
     finalizarActividad(idTiempo: number): Promise<any> {
 
         let final: number = Date.now();
         let sql = "UPDATE tiempos SET tFinal =  ? WHERE idTiempo = ? ";
-        return this.database.executeSql(sql, { final, idTiempo });
+        return this.database.executeSql(sql, [ final, idTiempo ]);
     }
     getActividadesActivas(): Promise<any> {
         console.log("estoy en getActividadesActivas");
@@ -120,7 +121,7 @@ export class DatabaseService {
         .then(()=>{
             console.log("voy a buscar en la BD");
             let sql = "SELECT * FROM actividades WHERE activo = 1 ";
-            return this.database.executeSql(sql, {})
+            return this.database.executeSql(sql, [])
             .then((data)=>{
                 let lists = [];
                 for(let i=0; i<data.rows.length; i++){
@@ -134,7 +135,7 @@ export class DatabaseService {
     getActividadesInactivas(): Promise<any> {
         console.log("voy a buscar las actividades ocultas en la BD");
         let sql = "SELECT * FROM actividades WHERE activo = 0 ";
-        return this.database.executeSql(sql, {})
+        return this.database.executeSql(sql, [])
         .then((data)=>{
             let lists = [];
             for(let i=0; i<data.rows.length; i++){
@@ -146,7 +147,7 @@ export class DatabaseService {
 
     getTiemposPorActividad(idActividad: number): Promise<any> {
         let sql = "SELECT * FROM tiempos WHERE idActividad = ? ";
-        return this.database.executeSql(sql, { idActividad });
+        return this.database.executeSql(sql, [ idActividad ]);
 
     }
 
