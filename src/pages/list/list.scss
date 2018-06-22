@@ -1,3 +1,68 @@
 page-list {
+    .scroll-content {
 
-}
+        width: 100wh;
+        height: 100vh;
+        color: #fff;
+        background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+        background-size: 400% 400%;
+        -webkit-animation: Gradient 40s ease infinite;
+        -moz-animation: Gradient 40s ease infinite;
+        animation: Gradient 40s ease infinite;
+      }
+      
+      @-webkit-keyframes Gradient {
+        0% {
+          background-position: 0% 50%
+        }
+        50% {
+          background-position: 100% 50%
+        }
+        100% {
+          background-position: 0% 50%
+        }
+      }
+      
+      @-moz-keyframes Gradient {
+        0% {
+          background-position: 0% 50%
+        }
+        50% {
+          background-position: 100% 50%
+        }
+        100% {
+          background-position: 0% 50%
+        }
+      }
+      
+      @keyframes Gradient {
+        0% {
+          background-position: 0% 50%
+        }
+        50% {
+          background-position: 100% 50%
+        }
+        100% {
+          background-position: 0% 50%
+        }
+
+    }
+    .fab{
+        background: rgb(68, 62, 66);
+    }
+    
+      .card{
+      flex: 1 1 auto;
+      padding-left: 0;
+      padding-right: 0;
+      padding: 4px ;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+
+      }
+      .action-sheet-ios .action-sheet-button {
+        color: #af086a !important;
+      }
+      
+    }
