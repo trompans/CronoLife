@@ -30,7 +30,7 @@ export class ActividadesOcultasPage {
       console.error( error );
     });
   }
-
+  
   activarActividad(idActividad: number, indice : number) {
     console.log('Activar');
     this.servicioBD.reactivarActividad(idActividad)
