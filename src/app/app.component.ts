@@ -22,7 +22,8 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   //private appInicializada = new BehaviorSubject<boolean>(false);
-  rootPage: any = BienvenidaPage;
+  //rootPage: any = BienvenidaPage;
+  rootPage: any = ListPage;
   pages: Array<{title: string, component: any}>;
   litMenuActividades : string;
   litMenuConfiguracion : string;
@@ -42,8 +43,8 @@ export class MyApp {
 
       //this.statusBar.styleDefault();
       // Muestro mi pantalla Splash animada
-//      let splash = this.modalCtrl.create(SplashPage);
-//    splash.present();
+      let splash = this.modalCtrl.create(SplashPage);
+      splash.present();
 
       this.storage.get("idioma").then(
         (idioma) => {
@@ -76,9 +77,9 @@ export class MyApp {
               console.log("4 " + value[3]);
               this.pages = [
                 { title: value["ACTIVIDADES"], component: ListPage },
-                { title: value["ESTADISTICAS_ACTIVIDAD"], component: OpcionesConfigPage },
+                { title: value["ESTADISTICAS_ACTIVIDAD"], component: StatsActividadesPage},
                 { title: value["ACTIVIDADES_INACTIVAS"], component: ActividadesOcultasPage},
-                { title: value["CONFIGURACION"], component: StatsActividadesPage}
+                { title: value["CONFIGURACION"], component: OpcionesConfigPage }
               ];
               this.initializeApp();
             }
@@ -101,81 +102,21 @@ export class MyApp {
         this.litMenuConfiguracion = value(1);
         this.litMenuActividadesInactivas = value(2);
         this.litMenuEstadActividad = value(3);
-
-
-
       }
     );
 
-   /* this.translate.get('ACTIVIDADES').subscribe(
-      value => {
-        // value is our translated string
-        this.litMenuActividades = value;
-        
-      }
-    );
-    this.translate.get('CONFIGURACION').subscribe(
-      value => {
-        // value is our translated string
-        this.litMenuConfiguracion = value;
-      }
-    );
-    this.translate.get('ACTIVIDADES_INACTIVAS').subscribe(
-      value => {
-        // value is our translated string
-        this.litMenuActividadesInactivas = value;
-      }
-    );
-    this.translate.get('ESTADISTICAS_ACTIVIDAD').subscribe(
-      value => {
-        // value is our translated string
-        this.litMenuEstadActividad = value;
-      }
-    );*/
   }
 
   initializeApp() {
     console.log ("Entra en initializeApp");
 
       console.log ("then initializeApp");
-      this.db.prepararBD();      
-      
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      
-    
-      // used for an example of ngFor and navigation
-      /*this.pages = [
-        { title: this.litMenuActividades, component: ListPage },
-        { title: this.litMenuEstadActividad, component: StatsActividadesPage},
-        { title: this.litMenuActividadesInactivas, component: ActividadesOcultasPage},
-        { title: this.litMenuConfiguracion, component: OpcionesConfigPage }
-      ];*/
-      // Remove the automatically generated call to hide the splash screen
-      //this.splashScreen.hide();
-
-
-      //this.appInicializada.next(true);
-
+      if (this.platform.is('core')) {
+        console.log("accediendo desde un PC");
+      } else {
+        this.db.prepararBD();   
+      }   
   }
-
-  /*appEstaInicializada() {
-    console.log("estoy en appEstaInicializada");
-    return new Promise((resolve, reject) => {
-        //if dbReady is true, resolve
-        if (this.appInicializada.getValue()) {
-            resolve();
-        }
-        //otherwise, wait to resolve until dbReady returns true
-        else {
-            this.appInicializada.subscribe((ready) => {
-                if (ready) {
-                    resolve();
-                }
-            });
-        }
-    })
-  }*/
 
   openPage(page) {
     // Reset the content nav to have just this page

@@ -50,7 +50,34 @@ export class ListPage {
   }
 
   obtenerTextos() {
-    this.translate.get('TITULO_ACTIONSHEET').subscribe(
+  
+    let clavesTraduccion : string[];
+    clavesTraduccion = ['TITULO_ACTIONSHEET', 
+                        'EDITAR',
+                        'BORRAR',
+                        'DESACTIVAR',
+                        'COMENZAR',
+                        'CANCELAR',
+                        'NO_BORRAR',
+                        'TITULO_CONFIRMA_BORRAR',
+                        'MENSAJE_CONFIRMA_BORRAR'];
+    this.translate.get(clavesTraduccion).subscribe(
+      value => {
+        // value is our translated string
+        console.log("value = " + value);
+        this.tituloActionSheet = value["TITULO_ACTIONSHEET"];
+        this.litEditar = value["EDITAR"];
+        this.litBorrar = value["BORRAR"];
+        this.litDesactivar = value["DESACTIVAR"];
+        this.litComenzar = value["COMENZAR"]; 
+        this.litCancelar = value["CANCELAR"]; 
+        this.litNoBorrar = value["NO_BORRAR"];
+        this.litTitConfirmBorrar = value["TITULO_CONFIRMA_BORRAR"];
+        this.litMsgConfirmBorrar = value["MENSAJE_CONFIRMA_BORRAR"];
+      }
+    );
+
+    /*this.translate.get('TITULO_ACTIONSHEET').subscribe(
       value => {
         // value is our translated string
         this.tituloActionSheet = value;
@@ -98,12 +125,12 @@ export class ListPage {
         this.litTitConfirmBorrar = value;
       }
     );
-    this.translate.get('TITULO_CONFIRMA_BORRAR').subscribe(
+    this.translate.get('MENSAJE_CONFIRMA_BORRAR').subscribe(
       value => {
         // value is our translated string
         this.litMsgConfirmBorrar = value;
       }
-    );
+    );*/
   }
 
   obtenerActividades() {
@@ -197,7 +224,11 @@ export class ListPage {
   }
 
   pedirConfirmacionBorrar(actividad : Actividad, indice : number) {
-    console.log("")
+    console.log("entro en pedir confirmacion borrar")
+    console.log("LITERALES " + this.litTitConfirmBorrar);
+    console.log("LITERALES " + this.litMsgConfirmBorrar);
+    console.log("LITERALES " + this.litBorrar);
+    console.log("LITERALES " + this.litNoBorrar);
     const confirm = this.alertCtrl.create({
       title: this.litTitConfirmBorrar,
       message: this.litMsgConfirmBorrar,

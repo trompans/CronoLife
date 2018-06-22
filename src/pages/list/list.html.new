@@ -9,14 +9,15 @@
 
 <ion-content>
   <ion-list>
-
-    <button ion-item *ngFor="let actividad of listaActividades; let indice = index;" 
+    <ion-grid>
+      <ion-card>
+        <button ion-item *ngFor="let actividad of listaActividades; let indice = index;" 
             (click)="mostrarAcciones(actividad, indice)">
-      <ion-icon color="icons"   style="margin-right: 10px" name="{{actividad.icono}}" start></ion-icon>
-      {{actividad.nombre}}
- 
-    </button>
-
+          <ion-icon color="icons"   style="margin-right: 10px" name="{{actividad.icono}}" start></ion-icon>
+            {{actividad.nombre}}
+        </button>
+      </ion-card>
+    </ion-grid>
   </ion-list>
   <div *ngIf="!listaActividades"  padding>
     {{ 'NO_ACTIVIDADES-ACTIVAS' | translate }}
