@@ -225,4 +225,4 @@ export class ListPage {
     });
     confirm.present();
   }
-
+}
