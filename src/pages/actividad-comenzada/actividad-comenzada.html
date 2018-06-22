@@ -1,0 +1,16 @@
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>actividad.nombre</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content>
+
+      <button ion-item (click)="detenerActividad();">
+        <ion-icon name="square" start></ion-icon>
+        {{ 'DETENER_ACTIVIDAD' | translate }}
+        </button>
+  </ion-content>

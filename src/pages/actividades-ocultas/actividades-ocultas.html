@@ -1,0 +1,23 @@
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>{{ 'ACTIVIDADES_INACTIVAS' | translate }}</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-list>
+      <button ion-button *ngFor="let actividad of listaActividades; let indice = index;">
+        <ion-icon name="{{actividad.icono}}" start></ion-icon>
+        {{actividad.nombre}}
+        <button ion-item (click)="activarActividad(idActividad, indice)">{{ 'ACTIVAR' | translate }}</button>
+      </button>
+
+      
+    </ion-list>
+    <div *ngIf="!listaActividades"  padding>
+      {{ 'NO_ACTIVIDADES_INACTIVAS' | translate }}
+    </div>
+  </ion-content>

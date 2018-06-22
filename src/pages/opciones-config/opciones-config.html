@@ -1,0 +1,18 @@
+<ion-header>
+
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{ 'CONFIGURACION' | translate }}</ion-title>
+    </ion-navbar>
+</ion-header>
+  
+  
+<ion-content padding>
+
+    <button (click)="cambiarIdioma('es')">{{ 'ESPAÑOL' | translate }}</button>
+    <button (click)="cambiarIdioma('en')">{{ 'INGLES' | translate }}</button>
+  
+</ion-content>
+  

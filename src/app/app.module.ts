@@ -7,6 +7,13 @@ import { ListPage } from '../pages/list/list';
 import { NuevaActividadPage } from '../pages/nueva-actividad/nueva-actividad';
 import { EditarActividadPage } from '../pages/editar-actividad/editar-actividad';
 import { SplashPage } from '../pages/splash/splash';
+import { StatsActividadesPage } from '../pages/stats-actividades/stats-actividades';
+
+import { ActividadComenzadaPage } from '../pages/actividad-comenzada/actividad-comenzada';
+import { ActividadesOcultasPage } from '../pages/actividades-ocultas/actividades-ocultas';
+import { OpcionesConfigPage } from '../pages/opciones-config/opciones-config';
+
+import { BienvenidaPage } from '../pages/bienvenida/bienvenida';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -17,6 +24,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { SQLite } from '@ionic-native/sqlite';
 import { DatabaseService } from './database.service';
+import { IonicStorageModule } from '@ionic/storage';
+import { Chart } from 'chart.js';
 
 export function createTranslateLoader(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, './assets/i18n/', '.json');
@@ -28,12 +37,19 @@ export function createTranslateLoader(httpClient: HttpClient) {
     ListPage,
     NuevaActividadPage,
     EditarActividadPage,
-    SplashPage
+    SplashPage,
+    StatsActividadesPage,
+    ActividadComenzadaPage,
+    ActividadesOcultasPage,
+    OpcionesConfigPage,
+    BienvenidaPage
+
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -47,7 +63,12 @@ export function createTranslateLoader(httpClient: HttpClient) {
     ListPage,
     NuevaActividadPage,
     EditarActividadPage,
-    SplashPage
+    SplashPage,
+    StatsActividadesPage,
+    ActividadComenzadaPage,
+    ActividadesOcultasPage,
+    OpcionesConfigPage,
+    BienvenidaPage
   ],
   providers: [
     StatusBar,
