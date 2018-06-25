@@ -87,6 +87,11 @@
     <plugin name="cordova-sqlite-storage" spec="^2.3.2" />
     <allow-navigation href="http://10.1.2.13:8100" />
     <plugin name="cordova-plugin-statusbar" spec="^2.4.2" />
+<<<<<<< HEAD
     <engine name="ios" spec="4.5.4" />
     <engine name="android" spec="7.0.0" />
+=======
+    <engine name="android" spec="~7.0.0" />
+    <engine name="ios" spec="~4.5.4" />
+>>>>>>> 9ac5c8c88729b4da2523e4d659c84ddbb498b792
 </widget>
