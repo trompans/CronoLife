@@ -6,14 +6,13 @@ import { MyApp } from './app.component';
 import { ListPage } from '../pages/list/list';
 import { NuevaActividadPage } from '../pages/nueva-actividad/nueva-actividad';
 import { EditarActividadPage } from '../pages/editar-actividad/editar-actividad';
-import { SplashPage } from '../pages/splash/splash';
 import { StatsActividadesPage } from '../pages/stats-actividades/stats-actividades';
 
 import { ActividadComenzadaPage } from '../pages/actividad-comenzada/actividad-comenzada';
 import { ActividadesOcultasPage } from '../pages/actividades-ocultas/actividades-ocultas';
 import { OpcionesConfigPage } from '../pages/opciones-config/opciones-config';
 
-import { BienvenidaPage } from '../pages/bienvenida/bienvenida';
+import { SplashPage } from '../pages/splash/splash';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -41,9 +40,7 @@ export function createTranslateLoader(httpClient: HttpClient) {
     StatsActividadesPage,
     ActividadComenzadaPage,
     ActividadesOcultasPage,
-    OpcionesConfigPage,
-    BienvenidaPage
-
+    OpcionesConfigPage
   ],
   imports: [
     BrowserModule,
@@ -67,8 +64,7 @@ export function createTranslateLoader(httpClient: HttpClient) {
     StatsActividadesPage,
     ActividadComenzadaPage,
     ActividadesOcultasPage,
-    OpcionesConfigPage,
-    BienvenidaPage
+    OpcionesConfigPage
   ],
   providers: [
     StatusBar,

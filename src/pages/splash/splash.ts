@@ -9,7 +9,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-splash',
   templateUrl: 'splash.html',

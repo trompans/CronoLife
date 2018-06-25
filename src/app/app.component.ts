@@ -11,7 +11,6 @@ import { SplashPage } from '../pages/splash/splash'
 import { StatsActividadesPage } from '../pages/stats-actividades/stats-actividades';
 import { DatabaseService } from './database.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { BienvenidaPage } from '../pages/bienvenida/bienvenida';
 import { Observable } from 'rxjs/Observable';
 
 
@@ -22,7 +21,6 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   //private appInicializada = new BehaviorSubject<boolean>(false);
-  //rootPage: any = BienvenidaPage;
   rootPage: any = ListPage;
   pages: Array<{title: string, component: any}>;
   litMenuActividades : string;
